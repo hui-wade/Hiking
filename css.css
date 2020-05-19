@@ -1,0 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC|Noto+Serif+TC&display=swap');
+
+p
+{
+	font-family: 'Noto Serif TC', serif;
+}
+
+h1,h2,h3,h4,h5,h6,big
+{
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+#footer
+{
+	background-image: url('https://images.freecreatives.com/wp-content/uploads/2016/01/Wood-Floor-Seamless-Texture.jpg');
+}
+nav
+{
+	background-color: rgba(255, 255, 255, 0.6);
+
+	transition: all 1s;
+}
+nav:hover
+{
+	background-color: rgba(255, 255, 255, 1);
+
+}
+
+.navbar-brand img
+{
+	width: 105px;
+}
+.box-shadow
+{
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.tab-div
+{
+	background-color: rgba(0, 255, 155, 0.2);
+	
+}
+.pretty-small
+{
+	font-size: 0.4rem;
+}
+
+.thumbnail-box
+{
+	
+	transition: all 0.5s;
+	text-decoration: none !important;
+}
+
+.thumbnail-box:hover
+{
+	box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.2);
+	text-decoration: none !important;
+	transform: scale(1.05,1.05);
+	z-index: 10;
+}
+
+.text-noDc
+{
+	text-decoration: none !important;
+}
+
+.text-noDc:hover
+{
+	text-decoration: none !important;
+}
+.text-noDc:focus
+{
+	text-decoration: none !important;
+}
+#star1,#star2,#star3,#star4,#star5
+{
+	cursor: pointer;
+	transition: all 0.5s;
+	transform: scale(1, 1);
+}
+
+
+
+.cursor-pointer
+{
+	cursor: pointer;
+}

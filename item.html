@@ -1,0 +1,1616 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7d3fe13f6d.js" crossorigin="anonymous"></script>
+    <title>Hello, world!</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+
+    <script src="js/lightbox.js"></script>
+    <link href="css/lightbox.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+      $(function()
+      {
+
+
+
+        //衣服尺寸對照 伸縮
+
+         $("#female-size").hide();
+        $("#female-size-click").click(function(){
+          $("#female-size").slideToggle();
+        });
+
+        $("#male-size").hide();
+        $("#male-size-click").click(function(){
+          $("#male-size").slideToggle();
+        });
+
+        $("#shoose-size").hide();
+        $("#shoose-size-click").click(function(){
+          $("#shoose-size").slideToggle();
+        });
+
+        //評分
+        let rating=5;
+          $('#star1').hover(function(){
+            $('#star1').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star2').css('opacity', '0.2');
+            $('#star3').css('opacity', '0.2');
+            $('#star4').css('opacity', '0.2');
+            $('#star5').css('opacity', '0.2');
+
+          });
+          $('#star2').mouseover(function(){
+            $('#star1').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star2').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star3').css('opacity', '0.2');
+            $('#star4').css('opacity', '0.2');
+            $('#star5').css('opacity', '0.2');
+          });
+          $('#star3').mouseover(function(){
+            $('#star1').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star2').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star3').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star4').css('opacity', '0.2');
+            $('#star5').css('opacity', '0.2');
+          });          
+
+          $('#star4').mouseover(function(){
+            $('#star1').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star2').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star3').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star4').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star5').css('opacity', '0.2');
+          }); 
+          $('#star5').mouseover(function(){
+            $('#star1').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star2').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star3').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star4').css('opacity', '1').css('transform','scale(1.2,1.2)');
+            $('#star5').css('opacity', '1').css('transform','scale(1.2,1.2)');
+          }); 
+
+          $('#star1').click(function(event) {
+                rating=1;
+          });  
+
+          $('#star2').click(function(event) {
+                rating=2;
+          });
+
+          $('#star3').click(function(event) {
+                rating=3;
+          });
+
+          $('#star4').click(function(event) {
+                rating=4;
+          });
+
+          $('#star5').click(function(event) {
+                rating=5;
+          });   
+
+
+          //切換產品照片
+//console.log($("[data-index=1]"));
+
+          $nowIndex=1;
+          $('.album-item').click(
+              function()
+              {
+               $nowIndex=parseInt($(this)[0].dataset.index);
+               $newsrc= $(this)[0].src;
+                $('.album-target').fadeOut('1000', function() {
+                  $('.album-target')[0].src=$newsrc;
+                  $('.album-target').parent('a')[0].href=$newsrc;
+                });
+                $('.album-target').fadeIn('1000');
+                //console.log($('.album-target')[0].src+","+$(this)[0].src);
+                console.log($nowIndex);
+              }
+            );
+
+
+          $allalbum=$('.album-item');
+
+
+          $('#album-left').click(function(){
+            if($nowIndex>1)
+            {
+              $nowIndex--;
+
+              $newsrc=$("[data-index="+$nowIndex+"]")[0].src;
+              $('.album-target').fadeOut('1000', function() {
+                  $('.album-target')[0].src=$newsrc;
+                  $('.album-target').parent('a')[0].href=$newsrc;
+              });
+              $('.album-target').fadeIn('1000'); 
+
+              console.log($nowIndex+","+$allalbum.length);
+            }
+
+            if($nowIndex==1)
+            {
+              $('#album-left').hide();
+              $('#album-right').show();
+            }
+            else if($nowIndex==$allalbum.length)
+            {
+                          
+              $('#album-right').hide();
+              $('#album-left').show();
+            
+            }
+            else
+            {
+              $('#album-right').show();
+              $('#album-left').show();
+            }
+
+
+          })
+
+          $('#album-right').click(function(){
+            if($nowIndex<$allalbum.length)
+            {
+              $nowIndex++;
+              $newsrc=$("[data-index="+$nowIndex+"]")[0].src;
+              $('.album-target').fadeOut('1000', function() {
+                  $('.album-target')[0].src=$newsrc;
+                  $('.album-target').parent('a')[0].href=$newsrc;
+              });
+              $('.album-target').fadeIn('1000'); 
+                       
+
+
+              console.log($nowIndex);
+            }
+
+
+            if($nowIndex==1)
+            {
+              $('#album-left').hide();
+              $('#album-right').show();
+            }
+            else if($nowIndex==$allalbum.length)
+            {
+                          
+              $('#album-right').hide();
+               $('#album-left').show();
+               console.log('test');
+            
+            }
+            else
+            {
+              $('#album-right').show();
+              $('#album-left').show();
+            }
+
+            console.log($nowIndex+","+$allalbum.length);
+
+          })
+         
+
+
+          //留言功能
+          $('#commentBtn').click(function(){
+
+            var content="";var nowDate=new Date();
+              content+="<div>";
+              for(let i=1;i<=5;i++)
+              {
+                if(i<=rating)
+                {
+                  content+="<img src='https://image.flaticon.com/icons/svg/1828/1828884.svg' style='width: 2%' id='star1_result'>";
+                }
+                else
+                {
+                  content+="<img src='https://image.flaticon.com/icons/svg/1828/1828884.svg' style='width: 2%;opacity: 20%;' id='star1_result'>";
+                }
+              }
+              content+='　　　'+nowDate.getFullYear()+'/'+nowDate.getMonth()+1+'/'+nowDate.getDate()+"</div>";
+
+              content+="<div>"+$('#commentText').val()+"<hr>"+"</div>";
+            $('#commentBoard').append (content);
+
+          });
+
+          $(document).mousemove(function(){
+          
+          if ($('#star1:hover').length == 0&&$('#star2:hover').length == 0&&$('#star3:hover').length == 0&&$('#star4:hover').length == 0&&$('#star5:hover').length == 0)
+            {
+                if(rating===1)
+                {
+                  $('#star1').css('opacity', '1');
+                  $('#star2').css('opacity', '0.2');
+                  $('#star3').css('opacity', '0.2');
+                  $('#star4').css('opacity', '0.2');
+                  $('#star5').css('opacity', '0.2');
+                }
+                else if(rating===2)
+                {
+                  $('#star1').css('opacity', '1');
+                  $('#star2').css('opacity', '1');
+                  $('#star3').css('opacity', '0.2');
+                  $('#star4').css('opacity', '0.2');
+                  $('#star5').css('opacity', '0.2');
+                }
+                else if(rating===3)
+                {
+                  $('#star1').css('opacity', '1');
+                  $('#star2').css('opacity', '1');
+                  $('#star3').css('opacity', '1');
+                  $('#star4').css('opacity', '0.2');
+                  $('#star5').css('opacity', '0.2');
+                }
+                else if(rating===4)
+                {
+                  $('#star1').css('opacity', '1');
+                  $('#star2').css('opacity', '1');
+                  $('#star3').css('opacity', '1');
+                  $('#star4').css('opacity', '1');
+                  $('#star5').css('opacity', '0.2');
+                }
+                else if(rating===5)
+                {
+                  $('#star1').css('opacity', '1');
+                  $('#star2').css('opacity', '1');
+                  $('#star3').css('opacity', '1');
+                  $('#star4').css('opacity', '1');
+                  $('#star5').css('opacity', '1');
+                }
+
+
+                  $('#star1').css('transform','scale(1,1)');
+                  $('#star2').css('transform','scale(1,1)');
+                  $('#star3').css('transform','scale(1,1)');
+                  $('#star4').css('transform','scale(1,1)');
+                  $('#star5').css('transform','scale(1,1)');
+            }
+          });
+
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid  ">
+      <div class="row">
+        <div class="col p-0">
+
+
+          <nav class="navbar navbar-expand-md navbar-light  fixed-top box-shadow">
+            <a class="navbar-brand" href="#"><img src="images/SchlagenLOGO_small.png" class="img-fluid w-50"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse  bd-highlight  d-md-flex justify-content-md-end" id="navbarTogglerDemo02">
+              <ul class="navbar-nav  mt-2 mt-lg-0  ">
+                <li class="nav-item active mr-auto">
+                  <a class="nav-link mr-3" href="#">首頁 <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item dropdown  mr-3">
+                  <a class="nav-link dropdown-toggle" href="#" id="storeDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">瀏覽<br class="d-none d-md-inline d-lg-none">商品</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">上衣</a>
+                    <a class="dropdown-item" href="#">外套</a>
+                    <a class="dropdown-item" href="#">褲子</a>
+                    <a class="dropdown-item" href="#">背包/配件</a>
+                    <a class="dropdown-item" href="#">鞋子</a>
+                  </div>
+                </li>
+                <li class="nav-item  mr-3">
+                  <a class="nav-link" href="#">購物車</a>
+                </li>
+                <li class="nav-item  mr-3">
+                  <a class="nav-link" href="#">訂單<br class="d-none d-md-inline d-lg-none">管理</a>
+                </li>
+                <li class="nav-item  mr-3"> 
+                  <a class="nav-link" href="#">
+
+                  <i class="fas fa-search"></i>
+                  搜尋
+                </a>
+                </li>
+              </ul>
+<!--               <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form> -->
+
+              <button class="btn btn-outline-success my-2 my-sm-0 btn-light" type="submit">登入</button>
+            </div>
+          </nav>
+        </div>
+      </div>
+<!--留白-->
+      <div style="height: 90.5px" class="bg-light"></div>
+
+
+<!--內文!-->
+<div class="container py-5">
+  <div class="row"> 
+    <div class="col"> 
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">瀏覽商品</a></li>
+            <li class="breadcrumb-item"><a href="#">上衣</a></li>
+            <li class="breadcrumb-item active">外套</li>
+        </ul>
+    </div>
+  </div>
+  <div class="row">
+    <!--商品圖片-->
+    <div class="col-12 col-md-6">
+      <!--大圖與箭頭-->
+      <span class="bg-secondary cursor-pointer px-1 " style="position:absolute;top:35%;display: none;" id="album-left"><i class="fas fa-angle-left fa-2x text-white"></i></span>
+
+      <a href="https://awsimage1.banner.tw/store73/upload/2020Apr/png/20200402115035230_2.png" data-lightbox="image-1" data-title="產品照片" ><img src="https://awsimage1.banner.tw/store73/upload/2020Apr/png/20200402115035230_2.png" class="w-100  img-thumbnail album-target"></a>
+
+      <span class="bg-secondary cursor-pointer px-1"  style="position:absolute;top:35%;right:16px;" id="album-right"><i class="fas fa-angle-right fa-2x text-white"></i></span>
+      
+    <!--相簿小圖-->
+      <div class="row py-2 px-3">
+        <div class="col-3 cursor-pointer p-1"><img src="https://awsimage1.banner.tw/store73/upload/2020Apr/png/20200402115035230_2.png" class="w-100 img-thumbnail album-item" data-index="1"></div>
+        <div class="col-3 cursor-pointer p-1"><img src="https://awsimage1.banner.tw/store73/upload/2020Apr/png/20200402105322760_2.png" class="w-100 img-thumbnail album-item" data-index=2></div>
+
+      </div>
+
+    </div>
+    <div class="col-12 col-md-6">
+      <div class=" box-shadow rounded p-1 bg-primary text-white d-inline-block px-3">Mont-bell</div>
+      <div class=" my-2 p-3">
+        <h2>Mont-bell 長袖快乾排汗衣 男 初級藍 Cool Parka 1114460</h2>
+      </div>
+      <a href="" ><span class="badge badge-success  badge-pill ">外套</span></a>
+      <a href="" ><span class="badge badge-primary  badge-pill ">男性</span></a>
+
+      <hr>
+      <div id="rating_area">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 10%" id="star1_result">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 10%" id="star2__result">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 10%" id="star3__result">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 10%" id="star4__result">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 10%; opacity: 20%" id="star5_result">
+      <hr>
+        <p class="small">已有0個人評價過此產品</p>
+        
+      </div>
+      <p class="my-2">商品編號:型號：1114460-PRBL</p><p class="float-right text-secondary"><i>上架日期:2020/4/9</i></p>
+      <p class="my-2">商品狀態：<span class="bg-success text-white rounded px-1">充足</span></p>
+      
+
+      <h2 class=" d-inline my-5 mr-3">$1,600 <h3 class="text-secondary d-inline "><strike>$2,000</strike><sup class="ml-3 text-danger ">八折優惠</sup></h3>  </h2>
+
+
+      
+      <form>
+        
+        <h6 class="my-2">尺寸</h6>
+        <select name="YourLocation">
+  　     <option value="S">S</option>
+  　     <option value="M">M</option>
+  　     <option value="L">L</option>
+  　     <option value="XL">XL</option>
+        </select>
+
+        <h6>數量</h6>
+          <input type="number" value="1" min="1" max="100" style="text-align: center;" name="" class="form-control w-50" id=num>
+          
+          
+        
+        <h4>
+          <input type="submit" class="btn-danger my-3 p-2" value="加入購物車">
+        </h4>
+      </form>
+    </div>
+
+  </div>
+
+
+
+
+
+<!--Tab panel -->
+
+
+  <ul class="nav nav-tabs my-3">
+    <li class="nav-item"><a data-toggle="tab" href="#home" class="nav-link active"><p><big>商品介紹</big></p></a></li>
+    <li class="nav-item"><a data-toggle="tab" href="#menu1" class="nav-link"><p><big>評論區</big></p></a></li>
+    <li class="nav-item"><a data-toggle="tab" href="#menu2" class="nav-link"><p><big>購買須知</big></p></a></li>
+  </ul>
+
+  <div class="tab-content ">
+    <div id="home" class="tab-pane  active" >
+      
+      <div class="tab-div m-3 p-3">
+        <p>Cool Parka 是完美的防曬選擇，可保護您免受太陽紫外線的傷害，並具有出色的透氣性。 Cool Parka 的布料經過 DWR 防撥水處理，適合從事水域活動。 有兩個口袋，帽兜和加長的袖子，具有出色的防曬效果， 在炎熱天氣的天氣中健行、登山、旅遊或是騎機車單車通勤都適合。</p>
+      </div>
+
+    <h6 class="p-2 px-3 bg-success rounded text-white d-inline-block ml-3">產品規格</h6>
+    <table class="table table-striped" >
+      <tr>
+        <th><strong>產地</strong></th>
+        <td>中國</td>
+      </tr>
+      <tr>
+        <th><strong>材質</strong></th>
+        <td>100% Polyester</td>        
+      </tr>
+      <tr>
+        <th><strong>重量</strong></th>
+        <td>181 g</td>         
+      </tr>
+    </table>
+
+    </div>
+
+
+
+    <!--留言評論區-->
+    <div id="menu1" class="tab-pane fade  m-3 p-3">
+      <div id="commentBoard">
+        
+      </div>
+
+<!--<form>-->
+      <div id="rating_area" class="py-4">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 5%" id="star1">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 5%" id="star2">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 5%" id="star3">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 5%" id="star4">
+        <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg" style="width: 5%" id="star5">
+      </div>
+
+      <input type="hidden" name="">
+        <textarea class="form-control comment pb-cmnt-textarea" rows="5" id="commentText"></textarea>
+        <input type="submit" name="" value="留言" class=" my-3" id="commentBtn">
+      <!--</form>-->
+    </div>
+
+
+    <div id="menu2" class="tab-pane fade  m-3 p-3">
+    <article>
+      <p class="text-danger">※ 照片內商品因拍攝條件及螢幕不同而略有色差，請以實際出貨商品為準。</p>
+      <h6>商品尺寸說明</h6>
+      <p>各品牌衣褲鞋帽產品的尺寸版型都有差異，個人穿著習慣亦會影響尺寸選擇，若您不確定適合的尺寸，歡迎於商品詢問欄提問， 我們將盡快依據原廠尺寸表及同仁穿著經驗回覆建議，但僅提供您作選購參考，恕無法保證所建議的尺寸100%符合您所需喔。</p>
+      <ul >
+        <li id="female-size-click" style="cursor: pointer"><strong>女性尺寸參考</strong></li>
+        <div id="female-size" class="p-3">
+         <article>
+            <p class="text-danger">※每個人的體脂與身材比例皆不同，以下對照表僅供參考，建議至門市試穿最準確，謝謝！</p>
+            <h3>女-上半身</h3>
+            ※理想體重－以"前者身高"為基準:理想體重為「偏瘦~正常」，後者則再加5kg
+                  <table class="table table-striped ">
+                    <tbody>
+                      <tr class="table-dark thead-dark" >
+                        <th>
+                          身高</th>
+                        <th>
+                          胸圍(cm/英吋)</th>
+                        <th>
+                          腰圍(cm/英吋)</th>
+                        <th>
+                          理想體重</th>
+                        <th>
+                          亞洲尺寸</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          152-158</td>
+                        <td>
+                          76~84/29~33</td>
+                        <td>
+                          57~65/22~25</td>
+                        <td>
+                          42~47kg</td>
+                        <td>
+                          XS~S</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          158~163</td>
+                        <td>
+                          79~87/31~34</td>
+                        <td>
+                          60~68/23~26</td>
+                        <td>
+                          45.5~50kg</td>
+                        <td>
+                          S</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          162~168</td>
+                        <td>
+                          82~90/32~35</td>
+                        <td>
+                          63~71/24~27</td>
+                        <td>
+                          48~53kg</td>
+                        <td>
+                          S~M</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          167~173</td>
+                        <td>
+                          85~93/33~36</td>
+                        <td>
+                          66~74/25~29</td>
+                        <td>
+                          50~55kg</td>
+                        <td>
+                          M</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          172~178</td>
+                        <td>
+                          88~97/34.5~38</td>
+                        <td>
+                          69~77/27~31</td>
+                        <td>
+                          53~58kg</td>
+                        <td>
+                          M~L</td>
+                      </tr>
+                    </tbody>
+                  </table class="table table-striped ">
+                  <div>
+                    <h4 style="margin-bottom: 0;">
+                    <b>體型比例參考</b></h4>
+                    <table class="table table-striped ">
+                      <tbody>
+                        <tr class="thead-dark">
+                          <th >
+                            身高</th>
+                          <th>
+                            體重</th>
+                          <th>
+                            體型</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            152cm</td>
+                          <td>
+                            44kg</td>
+                          <td>
+                            正常</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            158cm</td>
+                          <td>
+                            44kg</td>
+                          <td>
+                            偏瘦</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            158cm</td>
+                          <td>
+                            50kg</td>
+                          <td>
+                            正常</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            160cm</td>
+                          <td>
+                            50kg</td>
+                          <td>
+                            正常偏瘦</td>
+                        </tr>
+                        <tr >
+                          <td>
+                            身高</td>
+                          <td>
+                            身高-110</td>
+                          <td>
+                            正常偏瘦</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h2>
+                    女-下半身</h2>
+                  <table class="table table-striped ">
+                    <tbody>
+                      <tr class="thead-dark">
+                        <th>
+                          英吋</th>
+                        <th>
+                          腰圍(cm)</th>
+                        <th>
+                          臀圍(cm)</th>
+                        <th>
+                          亞洲尺寸</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          22</td>
+                        <td>
+                          56</td>
+                        <td>
+                          77</td>
+                        <td>
+                          XS</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          23</td>
+                        <td>
+                          59</td>
+                        <td>
+                          79</td>
+                        <td>
+                          XS</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          24</td>
+                        <td>
+                          61</td>
+                        <td>
+                          82</td>
+                        <td>
+                          XS</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          25</td>
+                        <td>
+                          63</td>
+                        <td>
+                          84</td>
+                        <td>
+                          XS</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          26</td>
+                        <td>
+                          64</td>
+                        <td>
+                          86</td>
+                        <td>
+                          S</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          27</td>
+                        <td>
+                          66</td>
+                        <td>
+                          90</td>
+                        <td>
+                          S~M</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          28</td>
+                        <td>
+                          67</td>
+                        <td>
+                          93</td>
+                        <td>
+                          M</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          29</td>
+                        <td>
+                          70</td>
+                        <td>
+                          97</td>
+                        <td>
+                          M~L</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          30</td>
+                        <td>
+                          73</td>
+                        <td>
+                          103</td>
+                        <td>
+                          L</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          31</td>
+                        <td>
+                          77</td>
+                        <td>
+                          106</td>
+                        <td>
+                          L~XL</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          32</td>
+                        <td>
+                          80</td>
+                        <td>
+                          108</td>
+                        <td>
+                          XL</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          33</td>
+                        <td>
+                          83</td>
+                        <td>
+                          110</td>
+                        <td>
+                          XL~2XL</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          34</td>
+                        <td>
+                          87</td>
+                        <td>
+                          112</td>
+                        <td>
+                          2XL</td>
+                      </tr>
+                    </tbody>
+                  </table>
+         </article> 
+        </div>
+
+        <li id="male-size-click" style="cursor: pointer"><strong>男性尺寸參考</strong></li>
+        <div id="male-size">
+          <article>
+                <p class="text-danger">※每個人的體脂與身材比例皆不同，以下對照表僅供參考，建議至門市試穿最準確，謝謝！</p>
+                <div>
+                  <div class="man" id="man">
+                    <h2>
+                      男-上半身</h2>
+                    ※理想體重－以"前者身高"為基準:理想體重為「正常~正常偏壯」，後者則再加5kg<br />
+                    ※由於男生健身者比例偏多，若以體重衡量準確度會較低，建議測量實際胸圍或腰圍尺寸
+                    <table class="table table-striped">
+                      <tbody>
+                        <tr class="thead-dark">
+                          <th>
+                            身高</th>
+                          <th>
+                            胸圍(cm/英吋)</th>
+                          <th>
+                            腰圍(cm/英吋)</th>
+                          <th>
+                            理想體重</th>
+                          <th>
+                            亞洲尺寸</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            162~168</td>
+                          <td>
+                            84~92/33~36</td>
+                          <td>
+                            70~78/27~30</td>
+                          <td>
+                            58~66kg</td>
+                          <td>
+                            S</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            167~173</td>
+                          <td>
+                            88~96/34~38</td>
+                          <td>
+                            74~82/29~32</td>
+                          <td>
+                            64~70kg</td>
+                          <td>
+                            S~M</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            172~178</td>
+                          <td>
+                            92~100/36~39</td>
+                          <td>
+                            78~86/30~34</td>
+                          <td>
+                            70~78kg</td>
+                          <td>
+                            M~L</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            177~183</td>
+                          <td>
+                            96~104/38~41</td>
+                          <td>
+                            82~90/32~35</td>
+                          <td>
+                            78~85kg</td>
+                          <td>
+                            L~XL</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            182~188</td>
+                          <td>
+                            100~108/39~42.5</td>
+                          <td>
+                            82~94/32~37</td>
+                          <td>
+                            85~90kg</td>
+                          <td>
+                            XL</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <h4 style="margin-bottom: 0;">
+                        <b>體型比例參考</b></h4>
+                      <table  class="table table-striped">
+                        <tbody>
+                          <tr class="thead-dark">
+                            <th>
+                              身高</th>
+                            <th>
+                              體重</th>
+                            <th>
+                              體型</th>
+                          </tr>
+                          <tr>
+                            <td>
+                              175cm</td>
+                            <td>
+                              70kg</td>
+                            <td>
+                              正常</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              182cm</td>
+                            <td>
+                              75kg</td>
+                            <td>
+                              正常偏瘦</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              165cm</td>
+                            <td>
+                              55kg</td>
+                            <td>
+                              偏瘦</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <h2>
+                      男-下半身</h2>
+                    <table  class="table table-striped">
+                      <tbody>
+                        <tr class="thead-dark">
+                          <th>
+                            英吋</th>
+                          <th>
+                            腰圍(cm)</th>
+                          <th>
+                            臀圍(cm)</th>
+                          <th>
+                            亞洲尺寸</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            28</td>
+                          <td>
+                            70</td>
+                          <td>
+                            99</td>
+                          <td>
+                            XS</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            29</td>
+                          <td>
+                            74</td>
+                          <td>
+                            101</td>
+                          <td>
+                            S</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            30</td>
+                          <td>
+                            78</td>
+                          <td>
+                            103</td>
+                          <td>
+                            M</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            31</td>
+                          <td>
+                            80</td>
+                          <td>
+                            105</td>
+                          <td>
+                            M</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            32</td>
+                          <td>
+                            84</td>
+                          <td>
+                            107</td>
+                          <td>
+                            M</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            33</td>
+                          <td>
+                            88</td>
+                          <td>
+                            109</td>
+                          <td>
+                            L</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            34</td>
+                          <td>
+                            90</td>
+                          <td>
+                            111</td>
+                          <td>
+                            L</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            36</td>
+                          <td>
+                            94</td>
+                          <td>
+                            113</td>
+                          <td>
+                            XL</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            38</td>
+                          <td>
+                            96</td>
+                          <td>
+                            116</td>
+                          <td>
+                            2XL</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            40</td>
+                          <td>
+                            100</td>
+                          <td>
+                            119</td>
+                          <td>
+                            3XL</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            42</td>
+                          <td>
+                            104</td>
+                          <td>
+                            121</td>
+                          <td>
+                            3XL</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            44</td>
+                          <td>
+                            106</td>
+                          <td>
+                            1259</td>
+                          <td>
+                            4XL</td>
+                        </tr>
+                      </tbody>
+                    </table>
+          </article>
+        </div>
+        <li id="shoose-size-click" style="cursor: pointer"><strong>鞋子尺寸參考</strong></li>
+        <div id="shoose-size">
+          <article>
+                    
+                    <article class="editor"><p>
+                      <font style="color: red;">※每個品牌的尺寸皆有些微誤差，以下對照表僅供參考，建議參考原廠品牌的尺寸表或至門市試穿最準確，謝謝！</font></p>
+                    <div>
+                      <div class="shoes" id="shoes">
+                        <h2>
+                          女鞋尺寸換算表</h2>
+                        <table  class="table table-striped">
+                          <tbody>
+                            <tr class="thead-dark">
+                              <th>
+                                公分</th>
+                              <th>
+                                USA(美國)</th>
+                              <th>
+                                UK(英國)</th>
+                              <th>
+                                EU(歐洲)</th>
+                            </tr>
+                            <tr>
+                              <td>
+                                22</td>
+                              <td>
+                                5</td>
+                              <td>
+                                3</td>
+                              <td>
+                                34</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                22.5</td>
+                              <td>
+                                5.5</td>
+                              <td>
+                                3.5</td>
+                              <td>
+                                35</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                23</td>
+                              <td>
+                                6</td>
+                              <td>
+                                4</td>
+                              <td>
+                                36</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                23.5</td>
+                              <td>
+                                6.5</td>
+                              <td>
+                                4.5</td>
+                              <td>
+                                37</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                24</td>
+                              <td>
+                                7</td>
+                              <td>
+                                5</td>
+                              <td>
+                                38</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                24.5</td>
+                              <td>
+                                7.5</td>
+                              <td>
+                                5.5</td>
+                              <td>
+                                39</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                25</td>
+                              <td>
+                                8</td>
+                              <td>
+                                6</td>
+                              <td>
+                                40</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                25.5</td>
+                              <td>
+                                8.5</td>
+                              <td>
+                                6.5</td>
+                              <td>
+                                41</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                26</td>
+                              <td>
+                                9</td>
+                              <td>
+                                7</td>
+                              <td>
+                                41</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                26.5</td>
+                              <td>
+                                9.5</td>
+                              <td>
+                                7.5</td>
+                              <td>
+                                42</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                27</td>
+                              <td>
+                                10</td>
+                              <td>
+                                8</td>
+                              <td>
+                                43</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                27.5</td>
+                              <td>
+                                10.5</td>
+                              <td>
+                                8.5</td>
+                              <td>
+                                44</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                28</td>
+                              <td>
+                                11</td>
+                              <td>
+                                9</td>
+                              <td>
+                                44</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                28.5</td>
+                              <td>
+                                11.5</td>
+                              <td>
+                                9.5</td>
+                              <td>
+                                45</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                29</td>
+                              <td>
+                                12</td>
+                              <td>
+                                10</td>
+                              <td>
+                                45</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                29.5</td>
+                              <td>
+                                12.5</td>
+                              <td>
+                                10.5</td>
+                              <td>
+                                46</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                30</td>
+                              <td>
+                                13</td>
+                              <td>
+                                11</td>
+                              <td>
+                                46</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <h2>
+                          男鞋尺寸換算表</h2>
+                        <table  class="table table-striped">
+                          <tbody>
+                            <tr class="thead-dark">
+                              <th>
+                                公分</th>
+                              <th>
+                                USA(美國)</th>
+                              <th>
+                                UK(英國)</th>
+                              <th>
+                                EU(歐洲)</th>
+                            </tr>
+                            <tr>
+                              <td>
+                                22</td>
+                              <td>
+                                4</td>
+                              <td>
+                                3.5</td>
+                              <td>
+                                34</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                22.5</td>
+                              <td>
+                                4.5</td>
+                              <td>
+                                4</td>
+                              <td>
+                                35</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                23</td>
+                              <td>
+                                5</td>
+                              <td>
+                                4.5</td>
+                              <td>
+                                36</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                23.5</td>
+                              <td>
+                                5.5</td>
+                              <td>
+                                5</td>
+                              <td>
+                                37</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                24</td>
+                              <td>
+                                6</td>
+                              <td>
+                                5.5</td>
+                              <td>
+                                38</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                24.5</td>
+                              <td>
+                                6.5</td>
+                              <td>
+                                6</td>
+                              <td>
+                                39</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                25</td>
+                              <td>
+                                7</td>
+                              <td>
+                                6.5</td>
+                              <td>
+                                40</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                25.5</td>
+                              <td>
+                                7.5</td>
+                              <td>
+                                7</td>
+                              <td>
+                                41</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                26</td>
+                              <td>
+                                8</td>
+                              <td>
+                                7.5</td>
+                              <td>
+                                41</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                26.5</td>
+                              <td>
+                                8.5</td>
+                              <td>
+                                8</td>
+                              <td>
+                                42</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                27</td>
+                              <td>
+                                9</td>
+                              <td>
+                                8.5</td>
+                              <td>
+                                43</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                27.5</td>
+                              <td>
+                                9.5</td>
+                              <td>
+                                9</td>
+                              <td>
+                                44</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                28</td>
+                              <td>
+                                10</td>
+                              <td>
+                                9.5</td>
+                              <td>
+                                44</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                28.5</td>
+                              <td>
+                                10.5</td>
+                              <td>
+                                10</td>
+                              <td>
+                                45</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                29</td>
+                              <td>
+                                11</td>
+                              <td>
+                                10.5</td>
+                              <td>
+                                45</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                29.5</td>
+                              <td>
+                                11.5</td>
+                              <td>
+                                11</td>
+                              <td>
+                                46</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                30</td>
+                              <td>
+                                12</td>
+                              <td>
+                                11.5</td>
+                              <td>
+                                46</td>
+                            </tr>
+                          </tbody>
+                        </table>
+          </article>
+        </div>
+      </ul>
+
+      <h6>運送及保固說明</h6>
+      <p>商品以黑貓宅急便寄送，出貨時間為週一至週六。大型商品(如：帳篷、桌椅等)以貨運公司配送。
+        台灣本島地區，下午 四點完成訂單，隔日送達。(偏遠山區、離島例外)。</p>
+        <p>
+          Schlagen 登山網所售出貨品均一年保固免費維修 。
+        </p>
+
+        <h6>運費說明</h6>
+        <p>每次購物滿 2000 元以上免運費，未達 2000 元 需加付 120 元運費。</p>
+
+        <h6>商品退換貨說明</h6>
+        <p class="text-danger">安全吊帶、冰爪、繩索、勾環、確保器、滑輪等技術性攀登產品、食品、瓦斯燃料、以及貼身衛生商品如內褲、襪子、護具等，為保障貴顧客權益，售出後除瑕疵外，概不接受退換，麻煩請確認後再訂購，謝謝。 </p>
+        <p>網路購物的消費者，都可以依照消費者保護法的規定，享有商品貨到日起七天猶豫期的權益。但猶豫期並非試用期，所以，您所退回的商品必須是全新的狀態、而且完整包裝；請注意保持商品本體、 配件、贈品、保證書、原廠包裝及所有附隨文件或資料的完整性，切勿缺漏任何配件或損毀原廠外盒。</p>
+          
+          <a href=""><p>如何申請退換貨</p></a>
+
+          <h6>購物流程</h6>
+          <p>STEP 1：將您想買的商品，放入購物車，並進入結帳程序。  </p>
+          <p>STEP 2：選擇運送方式以及送貨地址。  </p>
+          <p>STEP 3：選擇付費方式並完成結帳程序。  </p>
+          <p>STEP 4：確認款項後出貨。</p>
+          <p></p>
+          <p>若有任何購物流程問題，歡迎加入 百岳官方LINE客服，將有專人為您服務。</p>
+
+          <h6>付款方式</h6>
+          <ul>
+            <li>服務範圍
+                <p>我們可以寄送到 EMS(International Express Mail Service) 國際快遞涵蓋的任何國家與地區。</p>
+            </li>
+            <li>無法寄送的商品
+              <p>
+                由於可能的尺寸誤差，100mountain暫不提供服飾類、鞋襪類等牽涉到使用者尺寸的商品之海外訂單服務，若會員顧客有特別需求者（如已購買過相同商品並確認尺寸無誤），可另外洽詢 E-mail: service@100mountain.com。任何航空出口禁制商品（如瓦斯瓶、寄達國禁制商品）也在非服務之列。<br>
+在訂購商品時，訂貨人本人務必事先清楚瞭解顧客所在國家、地區對有關進口之法律、規定等以及禁止進口的商品。萬一在送往國家、地區發生訂購商品被沒收情況時，本公司恕不承擔責任。本公司也無法因這些原因而將商品貨款和送貨手續費等退還給顧客。
+              </p>
+            </li>
+            <li>如何付費？
+            <p>商品以及運費，我們都採用信用卡線上刷卡付費。</p>
+            </li>
+            <li>運費計算
+            <p>寄送到香港、澳門、中國等地：請依順豐速運報價為收費參考。在確認您欲購買的商品可正常出貨之後，我們會估算實際運費並以電子郵件向您報價。<br>
+其它國家：請依台灣郵政EMS報價為收費參考。在確認您欲購買的商品可正常出貨之後，我們會估算實際運費並以電子郵件向您報價。</p>
+            </li>
+            <li>寄送須知
+            <p>因顧客輸入錯誤地址以致商品無法送抵時，本公司恕不承擔責任。此外，若顧客要求將商品再次寄送至正確地址時，本公司也將向顧客收取送貨郵資等費用。訂單經確認受理後，訂購內容(尺碼，顏色，數量等)、送貨地址等將無法變更，訂單亦無法取消。</p>
+            </li>
+            <li>額外費用
+            <p>除了網站上標明的價格以及向您收取的運費之外，不需要負擔任何額外的費用，但必須注意的是，商品寄達之後可能產生的當地政府關稅、規費、手續費等一切費用，由購買人（收件人）全部負擔。並透過送往地之投遞郵局或者送貨公司直接向顧客徵收。</p>
+            </li>
+            <li>寄送時程
+            <p>
+              從發貨至送達您手上，港澳地區約3天內送達，中國大陸各大城市約5天內送達，其餘國家依地區遠近而定，約7-21天送達（參考EMS寄送時程表）。以上送達時間為預估值，供您參考，若遇海關清關作業、航班調度或天候等其他不可抗力之因素影響可能會有所延遲，敬請見諒！
+            </p>
+            </li>
+          </ul>
+
+          <h6>關於退貨</h6>
+          <ul>
+            <li>商品不是自己喜歡的
+            <p>請在收到商品3天內來信告知退貨原因（逾期恕不受理），並於兩週內將商品寄回到100mountain登山網（運費需由您自行負擔），在確認商品包裝及外觀無誤之後，我們會將款項在扣除我們的寄送運費之後退回您的信用卡帳戶（以台幣退款）。</p>
+            </li>
+
+            <li>
+              商品故障瑕疵
+            <p>
+              請在收到商品3天內（逾期恕不受理）將瑕疵故障位置拍照（至少三張清晰照片）寄到 E-mail:service@100mountain.com。在收到退貨申請及照片後我們會主動聯繫您作後續處理作業。
+            </p>
+              </li>
+          </ul>
+
+          <h6>特別注意事項</h6>
+          <ul>
+            <li>100mountain保留隨時更改及解釋相關約定條款之權利。</li>
+            <li>100mountain保留接受訂單與否的權利。</li>
+            <li>本公司恕不發行訂購商品之原產國證明、出口簽證等出口證明。</li>
+            <li>顧客經仔細閱讀上述條款後訂購商品，完成付款後即視同同意上述條款。</li>
+          </ul>
+    </div>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <h3 class="py-4">推薦商品</h3>
+
+    </div>
+  </div>
+
+  <div class="row"> 
+
+      <div class="col-6 col-md-3 my-2">
+        <a href="" class="card-link">
+          <div class="card thumbnail-box ">
+            <img src="https://awsimage6.banner.tw/store73/upload/2020Mar/png/20200318111013690_2.png" class="card-img-top">
+            <div class="card-body text-dark">
+              <div class="text-center text-success">
+                <h6 class="text-noDc">Mammut 長毛象</h6>
+              </div>
+                          <p>MAMMUT 長袖拉鍊排汗衣 男 龍膽花 </br>
+              Aegility Half Zip LS 00710</p>
+              <h4 class=" d-inline my-5">$1,600 <h5 class="text-secondary d-inline ml-3"><strike>$2,000</strike><sup class=" text-danger pretty-small">八折優惠</sup></h5>  </h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-3 my-2">
+        <a href="" class="card-link">
+          <div class="card thumbnail-box ">
+            <img src="https://awsimage6.banner.tw/store73/upload/2020Mar/png/20200318111013690_2.png" class="card-img-top">
+            <div class="card-body text-dark">
+              <div class="text-center text-success">
+                <h6 class="text-noDc">Mammut 長毛象</h6>
+              </div>
+                          <p>MAMMUT 長袖拉鍊排汗衣 男 龍膽花 </br>
+              Aegility Half Zip LS 00710</p>
+              <h4 class=" d-inline my-5">$1,600 <h5 class="text-secondary d-inline ml-3"><strike>$2,000</strike><sup class=" text-danger pretty-small">八折優惠</sup></h5>  </h4>
+            </div>
+          </div>
+        </a>
+      </div>      
+
+      <div class="col-6 col-md-3 my-2">
+        <a href="" class="card-link">
+          <div class="card thumbnail-box ">
+            <img src="https://awsimage6.banner.tw/store73/upload/2020Mar/png/20200318111013690_2.png" class="card-img-top">
+            <div class="card-body text-dark">
+              <div class="text-center text-success">
+                <h6 class="text-noDc">Mammut 長毛象</h6>
+              </div>
+                          <p>MAMMUT 長袖拉鍊排汗衣 男 龍膽花 </br>
+              Aegility Half Zip LS 00710</p>
+              <h4 class=" d-inline my-5">$1,600 <h5 class="text-secondary d-inline ml-3"><strike>$2,000</strike><sup class=" text-danger pretty-small">八折優惠</sup></h5>  </h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-3 my-2">
+        <a href="" class="card-link">
+          <div class="card thumbnail-box ">
+            <img src="https://awsimage6.banner.tw/store73/upload/2020Mar/png/20200318111013690_2.png" class="card-img-top">
+            <div class="card-body text-dark">
+              <div class="text-center text-success">
+                <h6 class="text-noDc">Mammut 長毛象</h6>
+              </div>
+                          <p>MAMMUT 長袖拉鍊排汗衣 男 龍膽花 </br>
+              Aegility Half Zip LS 00710</p>
+              <h4 class=" d-inline my-5">$1,600 <h5 class="text-secondary d-inline ml-3"><strike>$2,000</strike><sup class=" text-danger pretty-small">八折優惠</sup></h5>  </h4>
+            </div>
+          </div>
+        </a>
+      </div>
+  </div>
+  <!-- 內文到此!-->
+</div>
+
+
+ <!--footer!-->   
+    <div class="container-fluid bg-primary text-center pt-3 px-0 mx-0 " id="footer">
+      <div class="row w-50 m-auto py-2" >
+          <div class="col-6 col-md-3"><a href="" class="text-light">首頁</a></div>
+          <div class="col-6 col-md-3"><a href="" class="text-light">瀏覽商品</a></div>
+          <div class="col-6 col-md-3"><a href="" class="text-light">購物車</a></div>
+          <div class="col-6 col-md-3"><a href="" class="text-light">訂單管理</a></div>
+      
+      </div>
+
+      <div class="row w-50 m-auto" >
+          <div class="col-12 text-light">
+            <p>每日 12:30 ~ 21:20<br>
+             07-3308399<br>
+             service@Schlagen.com</p>
+          </div>
+
+      
+      </div>
+
+      
+      <div class="row w-50 m-auto ">
+        <div class="col"><p class=" text-right text-light">All images & content ©2004-2020 Schlagen Packs, Inc.</p></div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
